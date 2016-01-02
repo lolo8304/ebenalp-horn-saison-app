@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "0743ECB080F7722041BF612141310E7D07D7745C",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "CDB82E4677B93E82FD85ABC7E60AFA1089F2C404" : 0,
+    "0743ECB080F7722041BF612141310E7D07D7745C" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "061482F6-20BD-402F-940B-3C159285A52E",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "CDB82E4677B93E82FD85ABC7E60AFA1089F2C404" : "",
+    "0743ECB080F7722041BF612141310E7D07D7745C" : "ebenalp-horn-saison-app\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "ebenalp-horn-saison",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "ebenalp-horn-saison.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/lolo8304\/ebenalp-horn-saison-app.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "0743ECB080F7722041BF612141310E7D07D7745C"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/lolo8304\/schnee-horn.ch.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "CDB82E4677B93E82FD85ABC7E60AFA1089F2C404"
+    }
+  ]
+}
