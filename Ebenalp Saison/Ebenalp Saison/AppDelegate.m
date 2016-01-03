@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "UserManagement.h"
 
 @interface AppDelegate ()
 
@@ -30,8 +31,35 @@
     
     
     [ROXIMITYEngine startWithLaunchOptions: launchOptions engineOptions: roximityEngineOptions applicationId:@"1819b921b85f4cd697e5008220a7cf92" andEngineDelegate:self];
+    [self setRootViewController];
     return YES;
 }
+
+- (void)setRootViewController {
+    //Your View Controller Identifiers defined in Interface Builder
+    NSString *firstViewControllerIdentifier  = @"LoginController";
+    NSString *secondViewControllerIdentifier = @"NavigationController";
+    
+    BOOL validToken = [[UserManagement instance] authenticateKeyStoreToken];
+    
+    //check which view controller identifier should be used
+    NSString *viewControllerIdentifier = validToken ? secondViewControllerIdentifier : firstViewControllerIdentifier;
+    
+    //IF THE STORYBOARD EXISTS IN YOUR INFO.PLIST FILE AND YOU USE A SINGLE STORYBOARD
+    UIStoryboard *storyboard = self.window.rootViewController.storyboard;
+    
+    //IF THE STORYBOARD DOESN'T EXIST IN YOUR INFO.PLIST FILE OR IF YOU USE MULTIPLE STORYBOARDS
+    //UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"YOUR_STORYBOARD_FILE_NAME" bundle:nil];
+    
+    //instantiate the view controller
+    UIViewController *presentedViewController = [storyboard instantiateViewControllerWithIdentifier:viewControllerIdentifier];
+    
+    //IF YOU DON'T USE A NAVIGATION CONTROLLER:
+    [self.window setRootViewController:presentedViewController];
+
+}
+
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

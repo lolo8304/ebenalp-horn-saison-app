@@ -16,6 +16,10 @@
 
 @implementation HomeViewController
 
+- (IBAction)callLogoff:(id)sender {
+    [[UserManagement instance] logout];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -23,8 +27,7 @@
     NSDictionary* userDetails =[ [UserManagement instance] getCustomer];
 
     
-    NSString* name = [NSString stringWithFormat: @"%@ %@",[userDetails valueForKey: @"firstname"], [userDetails valueForKey: @"name"]];
-    [[self labelName] setText: name];
+    NSString* name = [NSString stringWithFormat: @"%@ %@ %@",[userDetails valueForKey: @"firstname"], [userDetails valueForKey: @"name"], [UserManagement instance].userId];
     [[self labelName] setText: name];
 }
 

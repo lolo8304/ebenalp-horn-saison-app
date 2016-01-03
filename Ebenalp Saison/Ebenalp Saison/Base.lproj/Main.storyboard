@@ -9,7 +9,7 @@
         <!--Login Controller-->
         <scene sceneID="IG1-p3-b3Y">
             <objects>
-                <viewController id="spN-10-zoF" customClass="LoginController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginController" id="spN-10-zoF" customClass="LoginController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9L5-gC-FxO"/>
                         <viewControllerLayoutGuide type="bottom" id="Aa5-vN-LHc"/>
@@ -18,8 +18,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" misplaced="YES" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="8Qp-2a-mKx">
-                                <rect key="frame" x="20" y="20" width="560" height="580"/>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="8Qp-2a-mKx">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                             </imageView>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" misplaced="YES" image="ebenalp-horn-banner" translatesAutoresizingMaskIntoConstraints="NO" id="3of-wF-Kfj">
                                 <rect key="frame" x="20" y="20" width="560" height="120"/>
@@ -30,7 +30,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Willkommen zur Saisonabo App" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hhn-yX-jZZ">
                                 <rect key="frame" x="40" y="148" width="520" height="33"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="27"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ybr-jz-9e0">
@@ -69,13 +69,13 @@
                                     <constraint firstAttribute="width" constant="80" id="l6S-UA-kkc"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Passwort" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PWq-LY-8Rl">
                                 <rect key="frame" x="40" y="237" width="80" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="lolo8304@gmail.com" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Xgi-uw-5lr">
@@ -96,13 +96,13 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Passwort vergessen?" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fav-MA-chV">
                                 <rect key="frame" x="130" y="325" width="430" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Nicht registriert?" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H2g-ML-OKY">
                                 <rect key="frame" x="130" y="406" width="430" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iVm-TS-2so">
@@ -150,7 +150,7 @@
                             <constraint firstItem="PWq-LY-8Rl" firstAttribute="trailing" secondItem="siL-tq-2eS" secondAttribute="trailing" id="Ouk-rf-4dj"/>
                             <constraint firstItem="Fav-MA-chV" firstAttribute="top" secondItem="ybr-jz-9e0" secondAttribute="bottom" constant="20" id="Pr6-G3-TgY"/>
                             <constraint firstAttribute="trailingMargin" secondItem="6Gb-MS-1J8" secondAttribute="trailing" constant="20" id="SZG-T9-knC"/>
-                            <constraint firstItem="8Qp-2a-mKx" firstAttribute="leading" secondItem="knG-7K-YHF" secondAttribute="leadingMargin" id="T9B-tt-9FN"/>
+                            <constraint firstItem="8Qp-2a-mKx" firstAttribute="leading" secondItem="knG-7K-YHF" secondAttribute="leadingMargin" constant="-20" id="T9B-tt-9FN"/>
                             <constraint firstItem="H2g-ML-OKY" firstAttribute="top" secondItem="coY-Nv-oVF" secondAttribute="bottom" constant="20" id="UkW-8Y-GDA"/>
                             <constraint firstItem="3of-wF-Kfj" firstAttribute="leading" secondItem="knG-7K-YHF" secondAttribute="leadingMargin" id="VgM-IP-Qur"/>
                             <constraint firstItem="3of-wF-Kfj" firstAttribute="top" secondItem="9L5-gC-FxO" secondAttribute="bottom" id="W8H-xu-g1u"/>
@@ -169,7 +169,7 @@
                             <constraint firstItem="8Qp-2a-mKx" firstAttribute="top" secondItem="9L5-gC-FxO" secondAttribute="bottom" id="p5V-Ez-tr9"/>
                             <constraint firstAttribute="trailingMargin" secondItem="3JO-7v-nei" secondAttribute="trailing" constant="30" id="r3Y-Pr-SP7"/>
                             <constraint firstItem="hhn-yX-jZZ" firstAttribute="leading" secondItem="knG-7K-YHF" secondAttribute="leadingMargin" constant="20" id="tGN-Bs-2Kf"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="8Qp-2a-mKx" secondAttribute="trailing" id="vBb-l8-LZh"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="8Qp-2a-mKx" secondAttribute="trailing" constant="-20" id="vBb-l8-LZh"/>
                             <constraint firstItem="hhn-yX-jZZ" firstAttribute="trailing" secondItem="knG-7K-YHF" secondAttribute="trailingMargin" constant="20" id="vEE-uH-FMJ"/>
                             <constraint firstItem="Xgi-uw-5lr" firstAttribute="baseline" secondItem="siL-tq-2eS" secondAttribute="baseline" id="wEG-XT-WsV"/>
                             <constraint firstItem="iVm-TS-2so" firstAttribute="top" secondItem="H2g-ML-OKY" secondAttribute="bottom" constant="10" id="zDm-dM-mRp"/>
@@ -199,7 +199,7 @@
             </objects>
             <point key="canvasLocation" x="-494" y="-983"/>
         </scene>
-        <!--Home View Controller-->
+        <!--Home-->
         <scene sceneID="S3H-Hu-ZPP">
             <objects>
                 <viewController id="9On-Q5-9qu" customClass="HomeViewController" sceneMemberID="viewController">
@@ -212,16 +212,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hgb-Sl-Ccf">
-                                <rect key="frame" x="53" y="103" width="333" height="21"/>
+                                <rect key="frame" x="53" y="103" width="517" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fpJ-rG-Vp1">
-                                <rect key="frame" x="53" y="150" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fpJ-rG-Vp1">
+                                <rect key="frame" x="54" y="150" width="45" height="30"/>
+                                <state key="normal" title="Logoff"/>
                                 <connections>
-                                    <segue destination="spN-10-zoF" kind="show" id="7qN-hV-efl"/>
+                                    <action selector="callLogoff:" destination="9On-Q5-9qu" eventType="touchUpInside" id="uXW-iz-keu"/>
+                                    <segue destination="spN-10-zoF" kind="showDetail" id="7qN-hV-efl"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -230,11 +231,11 @@
                             <constraint firstItem="fpJ-rG-Vp1" firstAttribute="top" secondItem="Hgb-Sl-Ccf" secondAttribute="bottom" constant="26" id="JMG-Dn-2Rv"/>
                             <constraint firstItem="Hgb-Sl-Ccf" firstAttribute="leading" secondItem="apn-gJ-Tws" secondAttribute="leadingMargin" constant="33" id="Owa-3E-bJ0"/>
                             <constraint firstItem="fpJ-rG-Vp1" firstAttribute="leading" secondItem="apn-gJ-Tws" secondAttribute="leadingMargin" constant="33" id="P3z-gv-ZgD"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Hgb-Sl-Ccf" secondAttribute="trailing" constant="194" id="nsY-0t-6Oh"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Hgb-Sl-Ccf" secondAttribute="trailing" constant="10" id="nsY-0t-6Oh"/>
                             <constraint firstItem="Hgb-Sl-Ccf" firstAttribute="top" secondItem="gOu-n6-Hrl" secondAttribute="bottom" constant="39" id="t3P-IT-XPn"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="DMO-sc-Iwf"/>
+                    <navigationItem key="navigationItem" title="Home" id="DMO-sc-Iwf"/>
                     <connections>
                         <outlet property="labelName" destination="Hgb-Sl-Ccf" id="v8U-cP-yNb"/>
                     </connections>
@@ -246,7 +247,7 @@
         <!--Navigation Controller-->
         <scene sceneID="XVR-wJ-3Kh">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="r1B-SM-Blk" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="NavigationController" automaticallyAdjustsScrollViewInsets="NO" id="r1B-SM-Blk" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Oqm-79-Dte">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

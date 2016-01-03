@@ -13,11 +13,18 @@
 
 @property (strong, nonatomic) RestApi* API;
 @property (strong, nonatomic) NSString* userId;
+@property (strong, nonatomic) NSDictionary* userData;
+@property (strong, nonatomic) NSDictionary* customerData;
 
 + (UserManagement*) instance; //singleton
 - (id) init;
 - (BOOL)authenticate: (NSString*)user password: (NSString*) password;
 - (NSDictionary*) getUser;
 - (NSDictionary*) getCustomer;
+
+- (BOOL)authenticateKeyStoreToken;
+- (void)logout;
+- (BOOL)hasValidToken;
+- (NSString*)getKeyStoreUser;
 
 @end

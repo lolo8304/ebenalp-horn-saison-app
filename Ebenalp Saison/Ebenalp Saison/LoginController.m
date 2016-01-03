@@ -28,11 +28,9 @@
     // Do any additional setup after loading the view.
     [[self buttonReset] setEnabled:false];
     
-    NSArray* accounts = [SSKeychain accountsForService: @"Ebenalp-Horn-Saison-App"];
-    if (accounts && [accounts count] > 0) {
-        NSDictionary* account = accounts[0];
-        [[self textEmailAddress] setText: [account valueForKey: kSSKeychainAccountKey]];
-        [[self textPassword] becomeFirstResponder];
+    if ([[UserManagement instance] authenticateKeyStoreToken]) {
+        [self performSegueWithIdentifier:@"login" sender:self];
+        //[[self textPassword] becomeFirstResponder];
     } else {
         //[[self textEmailAddress] becomeFirstResponder];
     }
@@ -96,9 +94,10 @@
 
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(nullable id)sender {
-    
     UserManagement* userAPI = [UserManagement instance];
-    [userAPI authenticate: [[self textEmailAddress] text] password: [[self textPassword] text]];
+    if (![userAPI hasValidToken]) {
+        [userAPI authenticate: [[self textEmailAddress] text] password: [[self textPassword] text]];
+    }
     return YES;
 }
 

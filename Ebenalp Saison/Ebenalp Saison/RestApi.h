@@ -15,6 +15,7 @@
 
 
 - (id) initWithBaseUrl: (NSString*) baseUrl token: (NSString*) token;
+- (BOOL) hasValidToken;
 
 - (NSDictionary*) POST: (NSString*) query data: (NSString*) data error: (NSError **)error;
 - (NSDictionary*) GET: (NSString*) query error: (NSError **)error;

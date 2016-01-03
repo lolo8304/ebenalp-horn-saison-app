@@ -21,6 +21,10 @@
     return self;
 }
 
+- (BOOL) hasValidToken {
+    return self.token;
+}
+
 
 /*example
  curl -X POST --header "Content-Type: application/json" --header "Accept: application/json" -d "{
@@ -48,13 +52,19 @@
     
     NSURLResponse *response = nil;
     NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error: error];
-    responseBody = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:NULL];
+    if (error && responseData) {
+        responseBody = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:NULL];
+    } else if (error) {
+        responseBody = nil;
+    } else {
+        responseBody = [NSJSONSerialization JSONObjectWithData:responseData options:0 error: error];
+    }
     return responseBody;
 }
 
 - (NSDictionary*) GET: (NSString*) query error: (NSError **)error {
     NSDictionary *responseBody = nil;
-    NSString *requestUrl = [NSString stringWithFormat:@"%@%@", self.baseUrl,query];
+    NSString *requestUrl = [NSString stringWithFormat:@"%@%@?access_token=%@", self.baseUrl,query, self.token];
     NSURL *url = [NSURL URLWithString: requestUrl];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL: url];
     request.HTTPMethod = @"GET";
