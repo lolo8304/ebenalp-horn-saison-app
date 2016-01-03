@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E124467C1C39BEA2007AE607 /* DAO.m in Sources */ = {isa = PBXBuildFile; fileRef = E124467B1C39BEA2007AE607 /* DAO.m */; };
+		E124467F1C39BFD7007AE607 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = E124467E1C39BFD7007AE607 /* User.m */; };
+		E12446821C39BFE4007AE607 /* Customer.m in Sources */ = {isa = PBXBuildFile; fileRef = E12446811C39BFE4007AE607 /* Customer.m */; };
+		E12446851C39C7E8007AE607 /* ModelRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = E12446841C39C7E8007AE607 /* ModelRepository.m */; };
 		E1D5B6671C385FEB00C3EBB1 /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1D5B6661C385FEB00C3EBB1 /* LoginController.m */; };
 		E1D5B6701C38630500C3EBB1 /* SSKeychain.strings in Resources */ = {isa = PBXBuildFile; fileRef = E1D5B6691C38630500C3EBB1 /* SSKeychain.strings */; };
 		E1D5B6711C38630500C3EBB1 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E1D5B66B1C38630500C3EBB1 /* Info.plist */; };
@@ -33,6 +37,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E124467A1C39BEA2007AE607 /* DAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAO.h; sourceTree = "<group>"; };
+		E124467B1C39BEA2007AE607 /* DAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DAO.m; sourceTree = "<group>"; };
+		E124467D1C39BFD7007AE607 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		E124467E1C39BFD7007AE607 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		E12446801C39BFE4007AE607 /* Customer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Customer.h; sourceTree = "<group>"; };
+		E12446811C39BFE4007AE607 /* Customer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Customer.m; sourceTree = "<group>"; };
+		E12446831C39C7E8007AE607 /* ModelRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelRepository.h; sourceTree = "<group>"; };
+		E12446841C39C7E8007AE607 /* ModelRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelRepository.m; sourceTree = "<group>"; };
 		E1D5B6651C385FEB00C3EBB1 /* LoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginController.h; sourceTree = "<group>"; };
 		E1D5B6661C385FEB00C3EBB1 /* LoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginController.m; sourceTree = "<group>"; };
 		E1D5B66A1C38630500C3EBB1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/SSKeychain.strings; sourceTree = "<group>"; };
@@ -108,6 +120,14 @@
 		E1D5B6741C3872A100C3EBB1 /* UserManagement */ = {
 			isa = PBXGroup;
 			children = (
+				E124467A1C39BEA2007AE607 /* DAO.h */,
+				E124467B1C39BEA2007AE607 /* DAO.m */,
+				E12446831C39C7E8007AE607 /* ModelRepository.h */,
+				E12446841C39C7E8007AE607 /* ModelRepository.m */,
+				E124467D1C39BFD7007AE607 /* User.h */,
+				E124467E1C39BFD7007AE607 /* User.m */,
+				E12446801C39BFE4007AE607 /* Customer.h */,
+				E12446811C39BFE4007AE607 /* Customer.m */,
 				E1D5B67B1C38738400C3EBB1 /* Const.h */,
 				E1D5B6781C38736E00C3EBB1 /* RestApi.h */,
 				E1D5B6791C38736E00C3EBB1 /* RestApi.m */,
@@ -272,12 +292,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E12446821C39BFE4007AE607 /* Customer.m in Sources */,
+				E12446851C39C7E8007AE607 /* ModelRepository.m in Sources */,
+				E124467F1C39BFD7007AE607 /* User.m in Sources */,
 				E1EB381A1C332C9E00B71426 /* AppDelegate.m in Sources */,
 				E1D5B6731C38630500C3EBB1 /* SSKeychainQuery.m in Sources */,
 				E1D5B6721C38630500C3EBB1 /* SSKeychain.m in Sources */,
 				E1D5B6771C3872C600C3EBB1 /* UserManagement.m in Sources */,
 				E1EB38171C332C9E00B71426 /* main.m in Sources */,
 				E1D5B6671C385FEB00C3EBB1 /* LoginController.m in Sources */,
+				E124467C1C39BEA2007AE607 /* DAO.m in Sources */,
 				E1D5B67A1C38736E00C3EBB1 /* RestApi.m in Sources */,
 				E1D5B67E1C38871400C3EBB1 /* HomeViewController.m in Sources */,
 			);
@@ -399,6 +423,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
 					"$(inherited)",
@@ -422,6 +450,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
 					"$(inherited)",

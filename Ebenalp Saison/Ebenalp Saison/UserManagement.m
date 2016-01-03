@@ -11,7 +11,9 @@
 #import "Const.h"
 /* http://cocoadocs.org/docsets/SSKeychain/1.3.1/ */
 #import "SSKeychain.h"
+#import "ModelRepository.h"
 
+#define EMPTY_TOKEN @"0$0"
 
 @implementation UserManagement
 
@@ -29,8 +31,8 @@
 - (id) init {
     self.API = [[RestApi alloc] initWithBaseUrl: REST_API_BASE_URL token: nil];
     self.userId = nil;
-    self.userData = nil;
-    self.customerData = nil;
+    self.user = nil;
+    self.customer = nil;
     return self;
 }
 
@@ -40,7 +42,7 @@
         if (range.location != NSNotFound) {
             NSString* realToken = [token substringFromIndex: range.location + 1];
             NSString* userId = [token substringToIndex: range.location];
-            self.userId = userId;
+            self.userId = [userId intValue];
             self.API = [[RestApi alloc] initWithBaseUrl: REST_API_BASE_URL token: realToken];
         }
     } else {
@@ -55,12 +57,12 @@
           data: [
                  NSString stringWithFormat: @"{ \"username\": \"%@\", \"password\": \"%@\"}", user, password] error: &error];
     if (error) {
-        [SSKeychain deletePasswordForService: KEYCHAIN_SERVICE_NAME account: user];
+        [self cleanToken: user];
         return FALSE;
     } else {
         NSString* token = [loginResult valueForKey: @"id"];
-        self.userId = [loginResult valueForKey: @"userId"];
-        NSString* combinedToken = [NSString stringWithFormat: @"%@$%@", self.userId, token ];
+        self.userId = [[loginResult valueForKey: @"userId"] intValue];
+        NSString* combinedToken = [NSString stringWithFormat: @"%i$%@", self.userId, token ];
         [self setToken: combinedToken];
         [SSKeychain setPassword: combinedToken forService: KEYCHAIN_SERVICE_NAME account: user];
         return TRUE;
@@ -71,10 +73,7 @@
 - (void)logout {
     if ([self hasValidToken]) {
         [self logoutUser];
-        NSString* keyStoreUser = [self getKeyStoreUser];
-        if (keyStoreUser) {
-            [SSKeychain deletePasswordForService: KEYCHAIN_SERVICE_NAME account: keyStoreUser];
-        }
+        [self cleanToken: [self getKeyStoreUser]];
     }
     [self setToken: nil];
 }
@@ -83,7 +82,7 @@
     if (![self hasValidToken]) {
         NSString* keyStoreUser = [self getKeyStoreUser];
         if ([self setValidToken: keyStoreUser]) {
-            if ([self getUser]) {
+            if ([self user]) {
                 return TRUE;
             } else {
                 [self logout];
@@ -123,7 +122,7 @@
 - (BOOL)setValidToken: (NSString*) user {
     if (user) {
         NSString* token = [SSKeychain passwordForService: KEYCHAIN_SERVICE_NAME account: user];
-        if (token) {
+        if (token && ![EMPTY_TOKEN isEqualToString: token]) {
             [self setToken: token];
             return TRUE;
         }
@@ -131,6 +130,12 @@
         [self setToken: nil];
     }
     return FALSE;
+}
+- (void)cleanToken: (NSString*) user {
+    if (user) {
+        [SSKeychain setPassword: EMPTY_TOKEN forService: KEYCHAIN_SERVICE_NAME account: user];
+    }
+    [self setToken: nil];
 }
 
 
@@ -152,10 +157,15 @@
  
  */
 
-- (NSDictionary*) getUser {
+- (User*) user {
+    if (_user) { return _user; }
+    ModelRepository* repository = [[ModelRepository alloc] init: @"Users" className: @"User"];
+    self.user = [repository modelWithId: self.userId];
+    return _user;
+    /*
     NSError *error = nil;
     
-    NSDictionary* userResults = [self.API GET: [NSString stringWithFormat: @"/Users/%@", self.userId ] error: &error];
+    NSDictionary* userResults = [self.API GET: [NSString stringWithFormat: @"/Users/%@", self.userId ] where: nil error: &error];
     
     if (error) {
         self.userData = nil;
@@ -164,11 +174,12 @@
         self.userData = userResults;
         return userResults;
     }
+     */
 }
 
 - (BOOL) logoutUser {
     NSError *error = nil;
-    [self.API GET: [NSString stringWithFormat: @"/Users/%@/logoff", self.userId ] error: &error];
+    [self.API GET: [NSString stringWithFormat: @"/Users/%i/logoff", self.userId ] where: nil error: &error];
     return !error;
 }
 
@@ -190,10 +201,17 @@
  }
  */
 
-- (NSDictionary*) getCustomer {
+- (Customer*) customer {
+    if (_customer) {return _customer; }
+    ModelRepository* repository = [[ModelRepository alloc] init: @"customers" className: @"Customer"];
+    self.customer = [repository modelWithId: self.userId];
+    return _customer;
+
+    
+    /*
     NSError *error = nil;
     
-    NSDictionary* userResults = [self.API GET: [NSString stringWithFormat: @"/customers/%@", self.userId ] error: &error];
+    NSDictionary* userResults = [self.API GET: [NSString stringWithFormat: @"/customers/%@", self.userId ] where: nil error: &error];
     
     if (error) {
         self.customerData = nil;
@@ -202,6 +220,7 @@
         self.customerData = userResults;
         return userResults;
     }
+     */
 }
 
 

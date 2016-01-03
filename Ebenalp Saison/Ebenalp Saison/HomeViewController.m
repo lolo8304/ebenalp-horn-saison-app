@@ -8,6 +8,7 @@
 
 #import "HomeViewController.h"
 #import "UserManagement.h"
+#import "Customer.h"
 
 @interface HomeViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *labelName;
@@ -24,10 +25,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    NSDictionary* userDetails =[ [UserManagement instance] getCustomer];
-
+    Customer* customer =[ [UserManagement instance] customer];
     
-    NSString* name = [NSString stringWithFormat: @"%@ %@ %@",[userDetails valueForKey: @"firstname"], [userDetails valueForKey: @"name"], [UserManagement instance].userId];
+    NSString* name = [NSString stringWithFormat: @"%@ %@ %i",[customer firstname], [customer name], [customer id]];
     [[self labelName] setText: name];
 }
 

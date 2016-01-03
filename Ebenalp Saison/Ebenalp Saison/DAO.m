@@ -13,6 +13,14 @@
 
 @implementation DAO
 
++(NSDate*) timestampFromUTCString: (NSString*) timestampUTCString {
+    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+    //The Z at the end of your string represents Zulu which is UTC
+    [dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss'Z'"];
+    return [dateFormatter dateFromString: timestampUTCString];
+}
+
 -(id) initWithDictionary: (NSDictionary*) dict
 {
     self = [super init];
@@ -22,11 +30,21 @@
     return self;
 }
 
+
 -(NSDictionary*) dictionay {
     return self.dict;
 }
 -(void)updateDictionary: (NSDictionary*) dictionary {
     self.dict = dictionary;
+}
+
+
+- (NSObject*) o: (NSString*) key {
+    return [self dict][key];
+}
+
+- (BOOL) b: (NSString*) key {
+    return [self dict][key];
 }
 
 
@@ -42,6 +60,9 @@
 - (int) int: (NSString*) key {
     NSNumber* n = [self dict][key];
     return [n intValue];
+}
+- (NSDate*) date: (NSString*) key {
+    return [ DAO timestampFromUTCString: [self s: key]];
 }
 
 - (double) double: (NSString*) key {

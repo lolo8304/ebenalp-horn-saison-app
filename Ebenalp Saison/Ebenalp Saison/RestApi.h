@@ -18,7 +18,7 @@
 - (BOOL) hasValidToken;
 
 - (NSDictionary*) POST: (NSString*) query data: (NSString*) data error: (NSError **)error;
-- (NSDictionary*) GET: (NSString*) query error: (NSError **)error;
+- (nullable id) GET: (NSString*) query where: (nullable NSDictionary*) filterWhereDictionary error: (NSError **)error;
 
 @end
 

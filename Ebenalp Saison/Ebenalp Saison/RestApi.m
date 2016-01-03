@@ -62,9 +62,22 @@
     return responseBody;
 }
 
-- (NSDictionary*) GET: (NSString*) query error: (NSError **)error {
-    NSDictionary *responseBody = nil;
-    NSString *requestUrl = [NSString stringWithFormat:@"%@%@?access_token=%@", self.baseUrl,query, self.token];
+- (nullable id) GET: (NSString*) query where: (nullable NSDictionary*) filterWhereDictionary error: (NSError **)error {
+    NSString *requestUrl;
+    if (filterWhereDictionary) {
+        NSDictionary* filterDictionary = [NSMutableDictionary dictionary];
+        [filterWhereDictionary setValue: filterWhereDictionary forKey: @"where"];
+    
+        NSData *filterJsonData=[NSJSONSerialization dataWithJSONObject: filterDictionary options:   NSJSONWritingPrettyPrinted error: error];
+        if (error) { return nil; }
+    
+        NSString* filterString = [[NSString alloc] initWithData: filterJsonData encoding:NSUTF8StringEncoding];
+        NSString* escapedFilterString = [filterString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]];
+        requestUrl = [NSString stringWithFormat:@"%@%@?filter=%@&access_token=%@", self.baseUrl, query, escapedFilterString, self.token];
+    } else {
+        requestUrl = [NSString stringWithFormat:@"%@%@?access_token=%@", self.baseUrl,query, self.token];
+    }
+    
     NSURL *url = [NSURL URLWithString: requestUrl];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL: url];
     request.HTTPMethod = @"GET";
@@ -74,8 +87,7 @@
     
     NSURLResponse *response = nil;
     NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error: error];
-    responseBody = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:NULL];
-    return responseBody;
+    return [NSJSONSerialization JSONObjectWithData:responseData options:0 error:NULL];
 }
 
 /*

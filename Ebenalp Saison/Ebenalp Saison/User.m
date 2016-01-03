@@ -10,4 +10,28 @@
 
 @implementation User
 
+-(int) id {
+    return [self int: @"id"];
+}
+
+-(NSString*) username {
+    return [self s: @"username"];
+}
+-(NSString*) email {
+    return [self s: @"email"];
+}
+-(BOOL) emailVerified {
+    return [self b: @"emailVerified"];
+}
+-(NSString*) verificationToken {
+    return [self s: @"verificationToken"];
+}
+-(NSDate*) created {
+    return [self date: @"created"];
+}
+-(NSDate*) lastUpdated {
+    return [self date: @"lastUpdated"];
+}
+
+
 @end

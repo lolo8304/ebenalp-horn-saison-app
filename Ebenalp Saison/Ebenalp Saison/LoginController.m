@@ -30,19 +30,26 @@
     
     if ([[UserManagement instance] authenticateKeyStoreToken]) {
         [self performSegueWithIdentifier:@"login" sender:self];
-        //[[self textPassword] becomeFirstResponder];
     } else {
-        //[[self textEmailAddress] becomeFirstResponder];
+        NSString* keyStoreUser = [[UserManagement instance] getKeyStoreUser];
+        if (keyStoreUser) {
+            [[self textEmailAddress] setText:keyStoreUser];
+            [[self textPassword] setText: @""];
+            //[[self textPassword] becomeFirstResponder];
+        } else {
+            [[self textEmailAddress] setText: @""];
+            [[self textPassword] setText: @""];
+            //[[self textEmailAddress] resignFirstResponder];
+        }
     }
-    
-    //[SSKeychain setPassword:@"AnyPassword" forService:@"AnyService" account:@"AnyUser"]
     
     UIToolbar* emailAddressToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
     emailAddressToolbar.barStyle = UIBarStyleDefault;
     emailAddressToolbar.items = @[
                             [[UIBarButtonItem alloc]initWithTitle:@">" style:UIBarButtonItemStylePlain target:self action:@selector(goToPasswordField)],
                             [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
-                            [[UIBarButtonItem alloc]initWithTitle:@"DONE" style:UIBarButtonItemStyleDone target:self action:@selector(doneWithEmailAddress)]];
+                            [[UIBarButtonItem alloc]initWithTitle:@"DONE" style:UIBarButtonItemStyleDone target:self action:@selector(doneWithEmailAddress)]
+                            ];
     [emailAddressToolbar sizeToFit];
     self.textEmailAddress.inputAccessoryView = emailAddressToolbar;
 
@@ -52,7 +59,9 @@
     passwordToolbar.items = @[
                                   [[UIBarButtonItem alloc]initWithTitle:@"<" style:UIBarButtonItemStylePlain target:self action:@selector(goToEmailAddressField)],
                                   [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
-                                  [[UIBarButtonItem alloc]initWithTitle:@"Login" style:UIBarButtonItemStyleDone target:self action:@selector(doneWithLogin)]];
+                                  [[UIBarButtonItem alloc]initWithTitle:@"DONE" style:UIBarButtonItemStyleDone target:self action:@selector(doneWithPassword)],
+                                  [[UIBarButtonItem alloc]initWithTitle:@"Login" style:UIBarButtonItemStyleDone target:self action:@selector(doneAndLogin)]
+                                  ];
     [passwordToolbar sizeToFit];
     self.textPassword.inputAccessoryView = passwordToolbar;
     
@@ -70,9 +79,12 @@
     [self.textEmailAddress resignFirstResponder];
 }
 
--(void)doneWithLogin{
+-(void)doneAndLogin{
     [self.textEmailAddress resignFirstResponder];
     [self performSegueWithIdentifier:@"login" sender:self];
+}
+-(void)doneWithPassword{
+    [self.textPassword resignFirstResponder];
 }
 
 
@@ -94,11 +106,28 @@
 
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(nullable id)sender {
+    [[self labelError] setText: @""];
     UserManagement* userAPI = [UserManagement instance];
-    if (![userAPI hasValidToken]) {
-        [userAPI authenticate: [[self textEmailAddress] text] password: [[self textPassword] text]];
+    if ([userAPI hasValidToken]) {
+        return YES;
+    } else {
+        NSString* emailText = [[self textEmailAddress] text];
+        NSString* pwdText = [[self textPassword] text];
+        if (emailText && [emailText length] == 0) {
+            [[self labelError] setText: @"Die Email ist leer"];
+            return NO;
+        } else if (pwdText && [pwdText length] == 0) {
+            [[self labelError] setText: @"Das Passwort ist leer"];
+            return NO;
+        } else {
+            if ([userAPI authenticate: [[self textEmailAddress] text] password: [[self textPassword] text]]) {
+                return YES;
+            } else {
+                [[self labelError] setText: @"Die Email oder das Passwort sind falsch"];
+                return NO;
+            }
+        }
     }
-    return YES;
 }
 
 - (IBAction)clickLogin:(id)sender {

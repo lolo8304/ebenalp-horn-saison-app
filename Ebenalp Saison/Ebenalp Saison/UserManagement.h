@@ -8,23 +8,28 @@
 
 #import <Foundation/Foundation.h>
 #import "RestApi.h"
+#import "User.h"
+#import "Customer.h"
 
 @interface UserManagement : NSObject
 
 @property (strong, nonatomic) RestApi* API;
-@property (strong, nonatomic) NSString* userId;
-@property (strong, nonatomic) NSDictionary* userData;
-@property (strong, nonatomic) NSDictionary* customerData;
+@property (nonatomic) int userId;
+@property (strong, nonatomic) User* user;
+@property (strong, nonatomic) Customer* customer;
 
 + (UserManagement*) instance; //singleton
 - (id) init;
-- (BOOL)authenticate: (NSString*)user password: (NSString*) password;
-- (NSDictionary*) getUser;
-- (NSDictionary*) getCustomer;
 
-- (BOOL)authenticateKeyStoreToken;
-- (void)logout;
-- (BOOL)hasValidToken;
+
+/* authentication */
+- (BOOL)authenticate: (NSString*)user password: (NSString*) password;
 - (NSString*)getKeyStoreUser;
+- (BOOL)authenticateKeyStoreToken;
+- (BOOL)hasValidToken;
+
+
+/* logout */
+- (void)logout;
 
 @end
