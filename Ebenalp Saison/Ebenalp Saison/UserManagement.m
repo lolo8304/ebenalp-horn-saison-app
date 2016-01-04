@@ -6,7 +6,10 @@
 //  Copyright © 2016 Ebenalp. All rights reserved.
 //
 
+
+
 #import "UserManagement.h"
+
 #import "RestApi.h"
 #import "Const.h"
 /* http://cocoadocs.org/docsets/SSKeychain/1.3.1/ */
@@ -30,7 +33,7 @@
 
 - (id) init {
     self.API = [[RestApi alloc] initWithBaseUrl: REST_API_BASE_URL token: nil];
-    self.userId = nil;
+    self.userId = 0;
     self.user = nil;
     self.customer = nil;
     return self;
@@ -65,7 +68,12 @@
         NSString* combinedToken = [NSString stringWithFormat: @"%i$%@", self.userId, token ];
         [self setToken: combinedToken];
         [SSKeychain setPassword: combinedToken forService: KEYCHAIN_SERVICE_NAME account: user];
-        return TRUE;
+        if ([self user]) {
+            //[ROXIMITYEngine setAlias: [[self user] email ]];
+            return TRUE;
+        } else {
+            return FALSE;
+        }
     }
 }
 
@@ -75,6 +83,7 @@
         [self logoutUser];
         [self cleanToken: [self getKeyStoreUser]];
     }
+    //[ROXIMITYEngine removeAlias];
     [self setToken: nil];
 }
 
@@ -83,6 +92,7 @@
         NSString* keyStoreUser = [self getKeyStoreUser];
         if ([self setValidToken: keyStoreUser]) {
             if ([self user]) {
+                //[ROXIMITYEngine setAlias: [[self user] email ]];
                 return TRUE;
             } else {
                 [self logout];
@@ -138,89 +148,24 @@
     [self setToken: nil];
 }
 
-
-
-/*
- {
- "realm": null,
- "username": "lolo8304@gmail.com",
- "credentials": null,
- "challenges": null,
- "email": "lolo8304@gmail.com",
- "emailVerified": true,
- "verificationToken": "me2",
- "status": "verified",
- "created": "2015-12-31T00:00:00.000Z",
- "lastUpdated": "2016-01-01T00:00:00.000Z",
- "id": 1
- }
- 
- */
-
-- (User*) user {
-    if (_user) { return _user; }
-    ModelRepository* repository = [[ModelRepository alloc] init: @"Users" className: @"User"];
-    self.user = [repository modelWithId: self.userId];
-    return _user;
-    /*
-    NSError *error = nil;
-    
-    NSDictionary* userResults = [self.API GET: [NSString stringWithFormat: @"/Users/%@", self.userId ] where: nil error: &error];
-    
-    if (error) {
-        self.userData = nil;
-        return nil;
-    } else {
-        self.userData = userResults;
-        return userResults;
-    }
-     */
-}
-
 - (BOOL) logoutUser {
     NSError *error = nil;
     [self.API GET: [NSString stringWithFormat: @"/Users/%i/logoff", self.userId ] where: nil error: &error];
     return !error;
 }
 
-/*
- {
- "category": "Erwachsener",
- "dateOfBirth": "1969-04-13T00:00:00.000Z",
- "firstname": "Lorenz",
- "name": "Hanggi",
- "street": null,
- "zip": null,
- "city": null,
- "userId": 1,
- "id": 1,
- "season": "2015-2016",
- "device_alias": null,
- "email": "lolo8304@gmai.com",
- "userid": 1
- }
- */
 
+- (User*) user {
+    if (_user) { return _user; }
+    ModelRepository* repository = [[ModelRepository alloc] init: @"Users" className: @"User"];
+    self.user = [repository modelWithId: self.userId];
+    return _user;
+}
 - (Customer*) customer {
     if (_customer) {return _customer; }
     ModelRepository* repository = [[ModelRepository alloc] init: @"customers" className: @"Customer"];
     self.customer = [repository modelWithId: self.userId];
     return _customer;
-
-    
-    /*
-    NSError *error = nil;
-    
-    NSDictionary* userResults = [self.API GET: [NSString stringWithFormat: @"/customers/%@", self.userId ] where: nil error: &error];
-    
-    if (error) {
-        self.customerData = nil;
-        return nil;
-    } else {
-        self.customerData = userResults;
-        return userResults;
-    }
-     */
 }
 
 

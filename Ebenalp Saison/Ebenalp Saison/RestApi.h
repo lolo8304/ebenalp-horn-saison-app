@@ -5,10 +5,6 @@
 //  Created by Cédric Wider on 03/10/15.
 //  Copyright © 2015 hackZurich. All rights reserved.
 //
-
-#ifndef RestApi_h
-#define RestApi_h
-
 @interface RestApi : NSObject
 @property (strong, nonatomic) NSString *baseUrl;
 @property (strong, nonatomic) NSString *token;
@@ -21,5 +17,3 @@
 - (nullable id) GET: (NSString*) query where: (nullable NSDictionary*) filterWhereDictionary error: (NSError **)error;
 
 @end
-
-#endif /* RestApi_h */

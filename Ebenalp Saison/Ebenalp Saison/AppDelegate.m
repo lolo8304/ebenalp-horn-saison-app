@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "UserManagement.h"
+#import "ROXIMITYEngine.h"
 
 @interface AppDelegate ()
 
@@ -31,6 +32,7 @@
     
     
     [ROXIMITYEngine startWithLaunchOptions: launchOptions engineOptions: roximityEngineOptions applicationId:@"1819b921b85f4cd697e5008220a7cf92" andEngineDelegate:self];
+    
     [self setRootViewController];
     return YES;
 }
@@ -41,6 +43,9 @@
     NSString *secondViewControllerIdentifier = @"NavigationController";
     
     BOOL validToken = [[UserManagement instance] authenticateKeyStoreToken];
+    if (!validToken) {
+        [ROXIMITYEngine removeAlias];
+    }
     
     //check which view controller identifier should be used
     NSString *viewControllerIdentifier = validToken ? secondViewControllerIdentifier : firstViewControllerIdentifier;

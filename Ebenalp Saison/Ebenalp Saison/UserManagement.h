@@ -11,10 +11,13 @@
 #import "User.h"
 #import "Customer.h"
 
+
 @interface UserManagement : NSObject
 
 @property (strong, nonatomic) RestApi* API;
 @property (nonatomic) int userId;
+@property (nonatomic) NSString* deviceId;
+
 @property (strong, nonatomic) User* user;
 @property (strong, nonatomic) Customer* customer;
 

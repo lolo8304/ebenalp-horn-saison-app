@@ -6,15 +6,8 @@
 //  Copyright © 2016 Ebenalp. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "ModelRepository.h"
 #import "DAO.h"
-#import "UserManagement.h"
-
-@interface ModelRepository : NSObject
-@property (strong, nonatomic) NSString* modelName;
-@property (strong, nonatomic) NSString* className;
-@property (strong, nonatomic) UserManagement* access;
-@end
 
 @implementation ModelRepository
 

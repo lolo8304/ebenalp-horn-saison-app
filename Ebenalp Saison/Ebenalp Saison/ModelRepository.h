@@ -6,16 +6,15 @@
 //  Copyright © 2016 Ebenalp. All rights reserved.
 //
 
-#ifndef ModelRepository_h
-#define ModelRepository_h
-
 #import <Foundation/Foundation.h>
+#import "UserManagement.h"
 
 @interface ModelRepository : NSObject
+@property (strong, nonatomic) NSString* modelName;
+@property (strong, nonatomic) NSString* className;
+@property (strong, nonatomic) UserManagement* access;
 
 -(id) init: (NSString*) modelName className: (NSString*) className;
 -(id) modelWithId: (int) id;
 
 @end
-
-#endif /* ModelRepository_h */
