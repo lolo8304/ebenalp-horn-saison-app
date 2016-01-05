@@ -14,5 +14,7 @@
 
 #define KEYCHAIN_SERVICE_NAME @"ebenalp-horn-access-DEV"
 
+#define CURRENT_SEASON @"2015-2016"
+
 
 #endif /* Const_h */

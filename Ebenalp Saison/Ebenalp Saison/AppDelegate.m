@@ -32,7 +32,7 @@
     
     
     [ROXIMITYEngine startWithLaunchOptions: launchOptions engineOptions: roximityEngineOptions applicationId:@"1819b921b85f4cd697e5008220a7cf92" andEngineDelegate:self];
-    
+
     [self setRootViewController];
     return YES;
 }
@@ -45,6 +45,7 @@
     BOOL validToken = [[UserManagement instance] authenticateKeyStoreToken];
     if (!validToken) {
         [ROXIMITYEngine removeAlias];
+    } else {
     }
     
     //check which view controller identifier should be used
@@ -64,6 +65,9 @@
 
 }
 
+-(void) setBeaconRangeDelegate:(id<ROXBeaconRangeUpdateDelegate>)beaconRangeUpdateDelegate  {
+    [ROXIMITYEngine setBeaconRangeDelegate: beaconRangeUpdateDelegate withUpdateInterval: kROXBeaconRangeUpdatesFastest];
+}
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -133,7 +137,8 @@
     NSLog(@"Location in usable state for ROXIMITY: %@ State: %zd", usable ? @"YES" : @"NO", authStatus);
     // If the user HAS made a determination about location, but it's not usable by ROXIMITY, prompt to adjust in Settings
     
-    if (!usable && authStatus != kCLAuthorizationStatusNotDetermined){
+    self.locationNotUsable = !usable && authStatus != kCLAuthorizationStatusNotDetermined;
+    if (self.locationNotUsable){
         
         UIAlertController *alertController = [UIAlertController
                                               alertControllerWithTitle:@"Adjust Location Permissions"
@@ -165,7 +170,8 @@
     
     NSLog(@"Notifications permitted for ROXIMITY: %@", permitted ? @"YES" : @"NO");
     
-    if (!permitted){
+    self.notificationsNotPermitted = !permitted;
+    if (self.notificationsNotPermitted){
         
         UIAlertController *alertController = [UIAlertController
                                               

@@ -31,8 +31,23 @@
 - (BOOL)authenticateKeyStoreToken;
 - (BOOL)hasValidToken;
 
-
 /* logout */
 - (void)logout;
+
+/* registration states 
+ 
+ registered = email registered + but activation mail not verified
+ verified = email registered + verified, but not an activated customer, try-before-you-buy, sees points but no vouchers
+ activated = registered + activated Saison Abo, points + vouchers
+ outdated = registered + activated, but season outdated
+ 
+ */
+
+- (BOOL)stateRegistered;
+- (BOOL)stateVerified;
+- (BOOL)stateActivated;
+- (BOOL)stateOutdated;
+- (NSString*) stateAsString;
+- (void)refreshState;
 
 @end

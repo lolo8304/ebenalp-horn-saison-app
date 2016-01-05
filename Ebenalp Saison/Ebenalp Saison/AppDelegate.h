@@ -9,9 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "ROXIMITYSDK.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, ROXIMITYEngineDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, ROXIMITYEngineDelegate, ROXBeaconRangeUpdateDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (nonatomic) BOOL locationNotUsable;
+@property (nonatomic) BOOL notificationsNotPermitted;
+
+-(void) setBeaconRangeDelegate:(id<ROXBeaconRangeUpdateDelegate>)beaconRangeUpdateDelegate;
 
 
 @end

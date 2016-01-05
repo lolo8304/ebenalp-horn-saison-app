@@ -169,5 +169,36 @@
 }
 
 
+- (BOOL)stateRegistered {
+    return ([self user] && ![[self user] emailVerified]
+            && ![self customer]);
+}
+- (BOOL)stateVerified {
+    return ([self user] && [[self user] emailVerified]
+            && ![self customer]);
+}
+- (BOOL)stateActivated {
+    return ([self user] && [[self user] emailVerified]
+            && [self customer] && [[[self customer] season] isEqualToString: CURRENT_SEASON]);
+}
+- (BOOL)stateOutdated {
+    return ([self user] && [[self user] emailVerified]
+            && [self customer] && ![[[self customer] season] isEqualToString: CURRENT_SEASON]);
+}
+
+- (NSString*) stateAsString {
+    if ([self stateRegistered]) return @"registriert";
+    if ([self stateVerified]) return @"verifiziert";
+    if ([self stateActivated]) return @"aktiviert";
+    return @"veraltet";
+}
+
+- (void)refreshState {
+    self.user = nil;
+    self.customer = nil;
+    [self user];
+    [self customer];
+}
+
 
 @end
