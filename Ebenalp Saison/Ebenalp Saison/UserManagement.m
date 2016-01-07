@@ -15,6 +15,7 @@
 /* http://cocoadocs.org/docsets/SSKeychain/1.3.1/ */
 #import "SSKeychain.h"
 #import "ModelRepository.h"
+#import "AppDelegate.h"
 
 #define EMPTY_TOKEN @"0$0"
 
@@ -69,7 +70,8 @@
         [self setToken: combinedToken];
         [SSKeychain setPassword: combinedToken forService: KEYCHAIN_SERVICE_NAME account: user];
         if ([self user]) {
-            //[ROXIMITYEngine setAlias: [[self user] email ]];
+            AppDelegate* app = [[UIApplication sharedApplication] delegate];
+            [app setAlias: [[self user] email]];
             return TRUE;
         } else {
             return FALSE;
@@ -83,7 +85,7 @@
         [self logoutUser];
         [self cleanToken: [self getKeyStoreUser]];
     }
-    //[ROXIMITYEngine removeAlias];
+    AppDelegate* app = [[UIApplication sharedApplication] delegate]; [app removeAlias];
     [self setToken: nil];
 }
 
@@ -92,7 +94,8 @@
         NSString* keyStoreUser = [self getKeyStoreUser];
         if ([self setValidToken: keyStoreUser]) {
             if ([self user]) {
-                //[ROXIMITYEngine setAlias: [[self user] email ]];
+                AppDelegate* app = [[UIApplication sharedApplication] delegate];
+                [app setAlias: [[self user] email]];
                 return TRUE;
             } else {
                 [self logout];

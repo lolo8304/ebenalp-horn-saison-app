@@ -16,6 +16,8 @@
 @property (nonatomic) BOOL notificationsNotPermitted;
 
 -(void) setBeaconRangeDelegate:(id<ROXBeaconRangeUpdateDelegate>)beaconRangeUpdateDelegate;
+-(void) setAlias:(NSString*)alias;
+-(void) removeAlias;
 
 
 @end
