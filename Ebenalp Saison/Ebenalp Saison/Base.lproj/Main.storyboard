@@ -502,7 +502,11 @@
                                 <action selector="callLogoff:" destination="9On-Q5-9qu" id="K7G-L0-RpZ"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Liste" id="978-ln-jWD"/>
+                        <barButtonItem key="rightBarButtonItem" title="Liste" id="978-ln-jWD">
+                            <connections>
+                                <segue destination="cP4-lg-TP0" kind="show" id="FbE-h3-llO"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="buttonLift1" destination="uT1-BH-ruO" id="DFx-mb-jkh"/>
@@ -530,7 +534,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Rpy-Uj-Mtd">
-                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Rpy-Uj-Mtd" id="AJa-Vk-xM0">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
