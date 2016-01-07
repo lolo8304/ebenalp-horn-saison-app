@@ -13,6 +13,11 @@
 
 @interface HomeViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *labelName;
+@property (weak, nonatomic) IBOutlet UIStackView *labelLastVisit;
+@property (weak, nonatomic) IBOutlet UIStackView *labelRanking;
+@property (weak, nonatomic) IBOutlet UIButton *buttonLift1;
+@property (weak, nonatomic) IBOutlet UIButton *buttonLift2;
+@property (weak, nonatomic) IBOutlet UIButton *buttonLift3;
 @property (weak, nonatomic) IBOutlet UIImageView *imageLocation;
 @property (weak, nonatomic) IBOutlet UIImageView *imageBeacons;
 @property (weak, nonatomic) IBOutlet UIImageView *imageNotifications;
@@ -31,7 +36,7 @@
     
     Customer* customer =[ [UserManagement instance] customer];
     
-    NSString* name = [NSString stringWithFormat: @"%@ %@ %i %@",[customer firstname], [customer name], [customer id], [[UserManagement instance] stateAsString]];
+    NSString* name = [NSString stringWithFormat: @"%@ %@, %@ [%i]",[customer firstname], [customer name], [[UserManagement instance] stateAsString], [customer id]];
     [[self labelName] setText: name];
     
     AppDelegate* delegate = [[UIApplication sharedApplication] delegate];
