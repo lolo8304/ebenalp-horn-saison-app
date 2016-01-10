@@ -70,13 +70,19 @@
         [self setToken: combinedToken];
         [SSKeychain setPassword: combinedToken forService: KEYCHAIN_SERVICE_NAME account: user];
         if ([self user]) {
-            AppDelegate* app = [[UIApplication sharedApplication] delegate];
-            [app setAlias: [[self user] email]];
+            [self setRoximityAlias];
             return TRUE;
         } else {
             return FALSE;
         }
     }
+}
+
+- (void) setRoximityAlias {
+    AppDelegate* app = [[UIApplication sharedApplication] delegate];
+    //NSString* alias = [NSString stringWithFormat: @"{\"email\": \"%@\", \"customer_id\": %u}", [[self user] email], [[self customer] id]];
+    NSString* alias = [NSString stringWithFormat: @"%u$%@", [[self customer] id], [[self user] email]];
+    [app setAlias: alias ];
 }
 
 
@@ -94,8 +100,7 @@
         NSString* keyStoreUser = [self getKeyStoreUser];
         if ([self setValidToken: keyStoreUser]) {
             if ([self user]) {
-                AppDelegate* app = [[UIApplication sharedApplication] delegate];
-                [app setAlias: [[self user] email]];
+                [self setRoximityAlias];
                 return TRUE;
             } else {
                 [self logout];
