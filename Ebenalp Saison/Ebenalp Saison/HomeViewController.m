@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *buttonLift3;
 @property (weak, nonatomic) IBOutlet UIImageView *imageLocation;
 @property (weak, nonatomic) IBOutlet UIImageView *imageBeacons;
+@property (weak, nonatomic) IBOutlet UILabel *labelNofBeacons;
 @property (weak, nonatomic) IBOutlet UIImageView *imageNotifications;
 
 @end
@@ -58,13 +59,20 @@
         return;
     }else {
         NSLog(@"ROXIMITY %lu found the following beacons: \n", (unsigned long)[rangedBeacons count]);
+        
+        unsigned int c = 0;
         for (NSDictionary* beacon in rangedBeacons) {
             if ([[beacon valueForKey: @"proximity_value"] intValue] > 0) {
-                self.imageBeacons.image = [UIImage imageNamed: @"green"];
-                return;
+                c++;
             }
         }
-        self.imageBeacons.image = [UIImage imageNamed: @"red"];
+        if (c > 0) {
+            self.imageBeacons.image = [UIImage imageNamed: @"green"];
+            [self.labelNofBeacons setText: [NSString stringWithFormat: @"%u", c]];
+        } else {
+            self.imageBeacons.image = [UIImage imageNamed: @"red"];
+            [self.labelNofBeacons setText: @""];
+        }
     }
     
 }

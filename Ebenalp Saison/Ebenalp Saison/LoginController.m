@@ -59,8 +59,11 @@
     passwordToolbar.items = @[
                                   [[UIBarButtonItem alloc]initWithTitle:@"<" style:UIBarButtonItemStylePlain target:self action:@selector(goToEmailAddressField)],
                                   [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
-                                  [[UIBarButtonItem alloc]initWithTitle:@"DONE" style:UIBarButtonItemStyleDone target:self action:@selector(doneWithPassword)],
+                                  [[UIBarButtonItem alloc]initWithTitle:@"DONE" style:UIBarButtonItemStyleDone target:self action:@selector(doneWithPassword)]
+                                  
+/*                                  ,
                                   [[UIBarButtonItem alloc]initWithTitle:@"Login" style:UIBarButtonItemStyleDone target:self action:@selector(doneAndLogin)]
+*/
                                   ];
     [passwordToolbar sizeToFit];
     self.textPassword.inputAccessoryView = passwordToolbar;
