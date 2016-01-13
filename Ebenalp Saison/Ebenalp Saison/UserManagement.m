@@ -69,6 +69,7 @@
         NSString* combinedToken = [NSString stringWithFormat: @"%i$%@", self.userId, token ];
         [self setToken: combinedToken];
         [SSKeychain setPassword: combinedToken forService: KEYCHAIN_SERVICE_NAME account: user];
+        [self cleanKeyStoreExceptUserId: user];
         if ([self user]) {
             [self setRoximityAlias];
             return TRUE;
@@ -118,6 +119,19 @@
 }
 
 
+- (void) cleanKeyStore: (NSArray*) accounts exceptUserId: (NSString*) exceptionUserId {
+    for (NSDictionary* account in accounts) {
+        NSString* userId =[account valueForKey: kSSKeychainAccountKey];
+        if (userId && ![userId isEqualToString: exceptionUserId]) {
+            [SSKeychain deletePasswordForService: KEYCHAIN_SERVICE_NAME account: userId];
+            NSLog(@"delete keychain for user=%@", userId);
+        }
+    }
+}
+- (void) cleanKeyStoreExceptUserId: (NSString*) exceptionUserId {
+    [self cleanKeyStore: [SSKeychain accountsForService: KEYCHAIN_SERVICE_NAME] exceptUserId:exceptionUserId];
+}
+
 - (NSString*)getKeyStoreUser {
     NSArray* accounts = [SSKeychain accountsForService: KEYCHAIN_SERVICE_NAME];
     if (accounts) {
@@ -126,11 +140,7 @@
             return [account valueForKey: kSSKeychainAccountKey];
         } else if ([accounts count] > 1) {
             NSLog(@"found more than 1 keystore account. Will delete them");
-            for (NSDictionary* account in accounts) {
-                NSString* userId =[account valueForKey: kSSKeychainAccountKey];
-                [SSKeychain deletePasswordForService: KEYCHAIN_SERVICE_NAME account: userId];
-                NSLog(@"delete keychain for user=%@", userId);
-            }
+            [self cleanKeyStore: accounts exceptUserId: nil];
         }
     }
     return nil;
@@ -152,6 +162,7 @@
 - (void)cleanToken: (NSString*) user {
     if (user) {
         [SSKeychain setPassword: EMPTY_TOKEN forService: KEYCHAIN_SERVICE_NAME account: user];
+        [self cleanKeyStoreExceptUserId: user];
     }
     [self setToken: nil];
 }
@@ -172,7 +183,9 @@
 - (Customer*) customer {
     if (_customer) {return _customer; }
     ModelRepository* repository = [[ModelRepository alloc] init: @"customers" className: @"Customer"];
-    self.customer = [repository modelWithId: self.userId];
+    NSMutableDictionary* search = [NSMutableDictionary dictionary];
+    [search setObject: [[NSNumber alloc] initWithInt: self.userId] forKey: @"userId"];
+    self.customer = [repository modelWithDictionary: search ];
     return _customer;
 }
 

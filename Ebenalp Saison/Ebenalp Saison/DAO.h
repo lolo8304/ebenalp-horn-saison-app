@@ -26,6 +26,7 @@
 - (NSString*) s: (NSString*) key;
 - (NSString*) i: (NSString*) key;
 - (int) int: (NSString*) key;
+- (long) long: (NSString*) key;
 - (double) double: (NSString*) key;
 - (NSDate*) date: (NSString*) key;
 - (NSArray*) a: (NSString*) key;

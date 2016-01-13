@@ -23,8 +23,8 @@
 
 @implementation LoginController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     // Do any additional setup after loading the view.
     [[self buttonReset] setEnabled:false];
     
@@ -42,6 +42,10 @@
             //[[self textEmailAddress] resignFirstResponder];
         }
     }
+    
+}
+- (void)viewDidLoad {
+    [super viewDidLoad];
     
     UIToolbar* emailAddressToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
     emailAddressToolbar.barStyle = UIBarStyleDefault;

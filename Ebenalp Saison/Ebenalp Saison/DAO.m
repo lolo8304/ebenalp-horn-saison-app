@@ -61,6 +61,10 @@
     NSNumber* n = [self dict][key];
     return [n intValue];
 }
+- (long) long: (NSString*) key {
+    NSNumber* n = [self dict][key];
+    return [n longValue];
+}
 - (NSDate*) date: (NSString*) key {
     return [ DAO timestampFromUTCString: [self s: key]];
 }

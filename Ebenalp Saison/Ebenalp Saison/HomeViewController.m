@@ -27,14 +27,8 @@
 
 @implementation HomeViewController
 
-- (IBAction)callLogoff:(id)sender {
-    [[UserManagement instance] logout];
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     Customer* customer =[ [UserManagement instance] customer];
     
     NSString* name = [NSString stringWithFormat: @"%@ %@, %@ [%i]",[customer firstname], [customer name], [[UserManagement instance] stateAsString], [customer id]];
@@ -44,12 +38,24 @@
     self.imageLocation.image = [UIImage imageNamed: (delegate.locationNotUsable ? @"red" : @"green")];
     self.imageNotifications.image = [UIImage imageNamed: (delegate.notificationsNotPermitted ? @"red" : @"green")];
     [delegate setBeaconRangeDelegate: self];
-    
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+
 }
 - (void)viewDidDisappear:(BOOL)animated {
     AppDelegate* delegate = [[UIApplication sharedApplication] delegate];
     [delegate setBeaconRangeDelegate: nil];
     
+}
+
+
+
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(nullable id)sender {
+    [[UserManagement instance] logout];
+    return YES;
 }
 
 

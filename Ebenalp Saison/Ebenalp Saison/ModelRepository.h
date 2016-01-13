@@ -16,5 +16,8 @@
 
 -(id) init: (NSString*) modelName className: (NSString*) className;
 -(id) modelWithId: (int) id;
+-(DAO*) modelWithDictionary: (NSDictionary*) filterWhereDictionary;
+-(NSArray*) listWithDictionary: (NSDictionary*) filterWhereDictionary;
+
 
 @end

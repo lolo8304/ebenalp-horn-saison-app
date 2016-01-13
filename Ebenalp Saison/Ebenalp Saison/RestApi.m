@@ -66,10 +66,10 @@
     NSString *requestUrl;
     if (filterWhereDictionary) {
         NSDictionary* filterDictionary = [NSMutableDictionary dictionary];
-        [filterWhereDictionary setValue: filterWhereDictionary forKey: @"where"];
+        [filterDictionary setValue: filterWhereDictionary forKey: @"where"];
     
-        NSData *filterJsonData=[NSJSONSerialization dataWithJSONObject: filterDictionary options:   NSJSONWritingPrettyPrinted error: error];
-        if (error) { return nil; }
+        NSData *filterJsonData=[NSJSONSerialization dataWithJSONObject: filterDictionary options: 0 error: error];
+        //if (error) { return nil; }
     
         NSString* filterString = [[NSString alloc] initWithData: filterJsonData encoding:NSUTF8StringEncoding];
         NSString* escapedFilterString = [filterString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]];

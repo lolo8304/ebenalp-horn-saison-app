@@ -24,6 +24,15 @@
 -(id) createInstance: (NSDictionary*) dict {
     return [[NSClassFromString(self.className) alloc] initWithDictionary: dict];
 }
+-(id) createInstances: (NSArray*) listOfDict {
+    NSMutableArray* newArray = [NSMutableArray array];
+    if (listOfDict) {
+        for (NSDictionary* dict in listOfDict) {
+            [newArray addObject: [self createInstance: dict]];
+        }
+    }
+    return newArray;
+}
 
 -(DAO*) modelWithId: (int) id {
     NSError *error = nil;
@@ -37,12 +46,22 @@
 }
 
 -(DAO*) modelWithDictionary: (NSDictionary*) filterWhereDictionary {
+    NSArray* objectList = [self listWithDictionary: filterWhereDictionary];
+    if (!objectList) {
+        return nil;
+    } else if ([objectList count] == 1) {
+        return objectList[0];
+    } else {
+        return nil;
+    }
+}
+-(NSArray*) listWithDictionary: (NSDictionary*) filterWhereDictionary {
     NSError *error = nil;
-    DAO* object = [self createInstance: [self.access.API GET: [NSString stringWithFormat: @"/%@", self.modelName] where: filterWhereDictionary error: &error]];
+    NSArray* objectList = [self createInstances: [self.access.API GET: [NSString stringWithFormat: @"/%@", self.modelName] where: filterWhereDictionary error: &error]];
     if (error) {
         return nil;
     } else {
-        return object;
+        return objectList;
     }
 }
 
