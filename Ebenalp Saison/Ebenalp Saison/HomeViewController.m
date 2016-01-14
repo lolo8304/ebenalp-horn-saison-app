@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imageBeacons;
 @property (weak, nonatomic) IBOutlet UILabel *labelNofBeacons;
 @property (weak, nonatomic) IBOutlet UIImageView *imageNotifications;
+@property (weak, nonatomic) IBOutlet UILabel *labelInfoBeacons;
 
 @end
 
@@ -67,17 +68,31 @@
         NSLog(@"ROXIMITY %lu found the following beacons: \n", (unsigned long)[rangedBeacons count]);
         
         unsigned int c = 0;
-        for (NSDictionary* beacon in rangedBeacons) {
+        NSString* buffer = @"";
+        NSSortDescriptor* brandDescriptor = [[NSSortDescriptor alloc] initWithKey:@"beacon_name" ascending:YES];
+        NSArray* sortDescriptors = [NSArray arrayWithObject:brandDescriptor];
+        NSArray* sortedArray = [rangedBeacons sortedArrayUsingDescriptors:sortDescriptors];
+        
+        for (NSDictionary* beacon in sortedArray) {
             if ([[beacon valueForKey: @"proximity_value"] intValue] > 0) {
+                NSString* beaconName =[beacon valueForKey: @"beacon_name"];
+                NSString* proximityName =[beacon valueForKey: @"proximity_string"];
+                if (c == 0) {
+                    buffer = [NSString stringWithFormat: @"%@/%@",beaconName, proximityName];
+                } else {
+                    buffer = [NSString stringWithFormat: @"%@%\n@/%@",buffer, beaconName, proximityName];
+                }
                 c++;
             }
         }
         if (c > 0) {
             self.imageBeacons.image = [UIImage imageNamed: @"green"];
             [self.labelNofBeacons setText: [NSString stringWithFormat: @"%u", c]];
+            [self.labelInfoBeacons setText: buffer];
         } else {
             self.imageBeacons.image = [UIImage imageNamed: @"red"];
             [self.labelNofBeacons setText: @""];
+            [self.labelInfoBeacons setText: @"no beacons"];
         }
     }
     
