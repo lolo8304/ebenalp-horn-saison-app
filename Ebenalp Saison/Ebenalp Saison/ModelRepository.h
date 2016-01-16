@@ -15,9 +15,13 @@
 @property (strong, nonatomic) UserManagement* access;
 
 -(id) init: (NSString*) modelName className: (NSString*) className;
--(id) modelWithId: (int) id;
+-(id) modelWithId: (long) id;
+-(DAO*) modelWithId: (long) id prefix: (NSString*) prefix;
+-(NSArray*) listWithId: (long) id prefix: (NSString*) prefix;
+
 -(DAO*) modelWithDictionary: (NSDictionary*) filterWhereDictionary;
 -(NSArray*) listWithDictionary: (NSDictionary*) filterWhereDictionary;
+
 
 
 @end

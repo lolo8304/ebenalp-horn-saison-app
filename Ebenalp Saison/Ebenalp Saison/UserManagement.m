@@ -184,10 +184,16 @@
     if (_customer) {return _customer; }
     ModelRepository* repository = [[ModelRepository alloc] init: @"customers" className: @"Customer"];
     NSMutableDictionary* search = [NSMutableDictionary dictionary];
-    [search setObject: [[NSNumber alloc] initWithInt: self.userId] forKey: @"userId"];
+    [search setObject: [[NSNumber alloc] initWithLong: [[self user] id]] forKey: @"userId"];
     self.customer = [repository modelWithDictionary: search ];
     return _customer;
 }
+
+- (NSArray*) lastTrackings {
+    ModelRepository* repository = [[ModelRepository alloc] init: @"lastTrackingDetails" className: @"Tracking"];
+    return [repository listWithId: [[self customer] id] prefix: @"customers"];
+}
+
 
 
 - (BOOL)stateRegistered {

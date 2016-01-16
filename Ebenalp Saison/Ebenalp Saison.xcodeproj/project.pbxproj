@@ -12,6 +12,7 @@
 		E12446821C39BFE4007AE607 /* Customer.m in Sources */ = {isa = PBXBuildFile; fileRef = E12446811C39BFE4007AE607 /* Customer.m */; };
 		E12446851C39C7E8007AE607 /* ModelRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = E12446841C39C7E8007AE607 /* ModelRepository.m */; };
 		E18F33EA1C459D07002BE67E /* MyLastBeaconsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E18F33E91C459D07002BE67E /* MyLastBeaconsTableViewController.m */; };
+		E18F33ED1C49D79F002BE67E /* Tracking.m in Sources */ = {isa = PBXBuildFile; fileRef = E18F33EC1C49D79F002BE67E /* Tracking.m */; };
 		E1D5B6671C385FEB00C3EBB1 /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1D5B6661C385FEB00C3EBB1 /* LoginController.m */; };
 		E1D5B6701C38630500C3EBB1 /* SSKeychain.strings in Resources */ = {isa = PBXBuildFile; fileRef = E1D5B6691C38630500C3EBB1 /* SSKeychain.strings */; };
 		E1D5B6711C38630500C3EBB1 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E1D5B66B1C38630500C3EBB1 /* Info.plist */; };
@@ -48,6 +49,8 @@
 		E12446841C39C7E8007AE607 /* ModelRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelRepository.m; sourceTree = "<group>"; };
 		E18F33E81C459D06002BE67E /* MyLastBeaconsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyLastBeaconsTableViewController.h; sourceTree = "<group>"; };
 		E18F33E91C459D07002BE67E /* MyLastBeaconsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyLastBeaconsTableViewController.m; sourceTree = "<group>"; };
+		E18F33EB1C49D79F002BE67E /* Tracking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tracking.h; sourceTree = "<group>"; };
+		E18F33EC1C49D79F002BE67E /* Tracking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tracking.m; sourceTree = "<group>"; };
 		E1D5B6651C385FEB00C3EBB1 /* LoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginController.h; sourceTree = "<group>"; };
 		E1D5B6661C385FEB00C3EBB1 /* LoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginController.m; sourceTree = "<group>"; };
 		E1D5B66A1C38630500C3EBB1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/SSKeychain.strings; sourceTree = "<group>"; };
@@ -136,6 +139,8 @@
 				E1D5B6791C38736E00C3EBB1 /* RestApi.m */,
 				E1D5B6751C3872C600C3EBB1 /* UserManagement.h */,
 				E1D5B6761C3872C600C3EBB1 /* UserManagement.m */,
+				E18F33EB1C49D79F002BE67E /* Tracking.h */,
+				E18F33EC1C49D79F002BE67E /* Tracking.m */,
 			);
 			name = UserManagement;
 			sourceTree = "<group>";
@@ -309,6 +314,7 @@
 				E124467C1C39BEA2007AE607 /* DAO.m in Sources */,
 				E1D5B67A1C38736E00C3EBB1 /* RestApi.m in Sources */,
 				E1D5B67E1C38871400C3EBB1 /* HomeViewController.m in Sources */,
+				E18F33ED1C49D79F002BE67E /* Tracking.m in Sources */,
 				E18F33EA1C459D07002BE67E /* MyLastBeaconsTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

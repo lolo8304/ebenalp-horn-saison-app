@@ -7,6 +7,7 @@
 //
 
 #import "MyLastBeaconsTableViewController.h"
+#import "UserManagement.h"
 
 @interface MyLastBeaconsTableViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *tableBeacons;
@@ -14,6 +15,11 @@
 @end
 
 @implementation MyLastBeaconsTableViewController
+
+- (void)viewWillAppear:(BOOL)animated {
+    NSArray* lastTrackings = [[UserManagement instance] lastTrackings];
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -23,6 +29,7 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
 }
 
 - (void)didReceiveMemoryWarning {

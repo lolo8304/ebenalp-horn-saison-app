@@ -15,7 +15,7 @@
 @interface UserManagement : NSObject
 
 @property (strong, nonatomic) RestApi* API;
-@property (nonatomic) int userId;
+@property (nonatomic) long userId;
 @property (nonatomic) NSString* deviceId;
 
 @property (strong, nonatomic) User* user;
@@ -49,5 +49,10 @@
 - (BOOL)stateOutdated;
 - (NSString*) stateAsString;
 - (void)refreshState;
+
+
+- (NSArray*)lastTrackings;
+
+
 
 @end

@@ -27,7 +27,7 @@
 
 @interface Customer : DAO
 
--(int) id;
+-(long) id;
 -(NSString*) category;
 -(NSDate*) dateOfBirth;
 -(NSString*) firstname;

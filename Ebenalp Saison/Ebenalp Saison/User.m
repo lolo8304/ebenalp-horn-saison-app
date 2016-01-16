@@ -10,8 +10,8 @@
 
 @implementation User
 
--(int) id {
-    return [self int: @"id"];
+-(long) id {
+    return [self long: @"id"];
 }
 
 -(NSString*) username {

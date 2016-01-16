@@ -35,7 +35,7 @@
 -(NSString*) city {
     return [self s: @"city"];
 }
--(int) userId {
+-(long) userId {
     return [self int: @"userId"];
 }
 -(NSString*) season {

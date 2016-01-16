@@ -34,7 +34,7 @@
     return newArray;
 }
 
--(DAO*) modelWithId: (int) id {
+-(DAO*) modelWithId: (long) id {
     NSError *error = nil;
     NSDictionary* newObject =[self.access.API GET: [NSString stringWithFormat: @"/%@/%i", self.modelName, id ] where: nil error: &error];
     DAO* object = [self createInstance: newObject];
@@ -44,6 +44,28 @@
         return object;
     }
 }
+-(DAO*) modelWithId: (long) id prefix: (NSString*) prefix {
+    NSError *error = nil;
+    NSDictionary* newObject =[self.access.API GET: [NSString stringWithFormat: @"/%@/%i/%@", prefix, id, self.modelName ] where: nil error: &error];
+    DAO* object = [self createInstance: newObject];
+    if (error) {
+        return nil;
+    } else {
+        return object;
+    }
+}
+
+-(NSArray*) listWithId: (long) id prefix: (NSString*) prefix {
+    NSError *error = nil;
+    NSArray* newObject =[self.access.API GET: [NSString stringWithFormat: @"/%@/%i/%@", prefix, id, self.modelName ] where: nil error: &error];
+    NSArray* list = [self createInstances: newObject];
+    if (error) {
+        return nil;
+    } else {
+        return list;
+    }
+}
+
 
 -(DAO*) modelWithDictionary: (NSDictionary*) filterWhereDictionary {
     NSArray* objectList = [self listWithDictionary: filterWhereDictionary];

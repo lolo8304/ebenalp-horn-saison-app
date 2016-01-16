@@ -28,7 +28,7 @@
 @interface User : DAO
 
 
--(int) id;
+-(long) id;
 -(NSString*) username;
 -(NSString*) email;
 -(BOOL) emailVerified;
